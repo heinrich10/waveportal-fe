@@ -82,6 +82,7 @@ export default function App() {
       const accounts = await ethereum.request({ method: 'eth_requestAccounts'});
       console.log('connected', accounts[0]);
       setCurrentAccount(accounts[0])
+      window.location.reload(false);
     } catch (err) {
       console.log(err)
     }
@@ -206,6 +207,11 @@ export default function App() {
           <button className="waveButton" onClick={connectWallet}>
             Connect Wallet
           </button>
+        )}
+        {!currentAccount && (
+          <div className="bio">
+            (Underlying smart contract is deployed to Rinkeby testnet)
+          </div>
         )}
 
         {allWaves.map((wave, index) => {
